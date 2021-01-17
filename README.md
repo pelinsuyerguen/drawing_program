@@ -2,9 +2,9 @@
 
 This program was written by Ü. Pelinsu Yergün as final project (in german) with C++ and Qt, version 5.  
 
-With this programm you can draw lines, circles, squares and polygons.
+With this program you can draw lines, circles, squares and polygons.
 
-to start the program on linux, write in the command line:
+To run the program on linux, type the following code in the command line (after cd'ing to the directory):
 ./EIS_Draw 
 
 
