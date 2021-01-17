@@ -1,4 +1,4 @@
-# drowing_program
+# drawing_program
 
 This program was written by Ü. Pelinsu Yergün as final project (in german) with C++ and Qt, version 5.  
 
