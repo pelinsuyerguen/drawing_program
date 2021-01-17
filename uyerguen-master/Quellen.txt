@@ -1,0 +1,23 @@
+ Quellen: 
+ --------
+- für "menuBar()-> addMenu" https://doc.qt.io/archives/qt-4.8/qmenubar.html
+- für QIconen aus den Iconenlisten
+    https://doc.qt.io/qt-5/qicon.html
+    https://gist.github.com/peteristhegreat/c0ca6e1a57e5d4b9cd0bb1d7b3be1d6a
+- für https://doc.qt.io/qt-5/qml-qtquick-text.html Quelle für <b> ...</b> bold Text
+- https://doc.qt.io/qt-5/qtwidgets-tutorials-addressbook-part6-example.html für save as in file Methode (zw. Zeilen : 410-420 in MainWindow.cpp)
+- nur für folgende Zeile (move + Left-button gedrückt)
+    https://stackoverflow.com/questions/10778936/qt-mousemoveevent-qtleftbutton
+    -> if ( e->buttons() & Qt::LeftButton ) 
+- fürdie "Qt::Key_Control"
+   https://stackoverflow.com/questions/20746488/how-to-catch-ctrl-key-release
+- Quelle QInputDialog: https://doc.qt.io/qt-5/qinputdialog.html
+
+ - Quelle Text für die Idee = https://doc.qt.io/archives/qt-4.8/qactiongroup.html
+    /*In some situations it is useful to group QAction objects together.
+     * For example, if you have a Left Align action, a Right Align action, a Justify action,
+     * and a Center action, only one of these actions should be active at any one time.
+     * One simple way of achieving this is to group the actions together in an action group.*/
+- in main.cpp : orientierung nach ubungsblatt9 /Anlage
+- Quelle für die Info-Beschreibungen als Orientierung: Musterlösung :) 
+

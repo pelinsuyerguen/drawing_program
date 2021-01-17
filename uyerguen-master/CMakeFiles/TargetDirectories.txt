@@ -1,0 +1,4 @@
+/home/pelinsu/CLionProjects/haha/CMakeFiles/rebuild_cache.dir
+/home/pelinsu/CLionProjects/haha/CMakeFiles/EIS_Draw.dir
+/home/pelinsu/CLionProjects/haha/CMakeFiles/edit_cache.dir
+/home/pelinsu/CLionProjects/haha/CMakeFiles/EIS_Draw_autogen.dir

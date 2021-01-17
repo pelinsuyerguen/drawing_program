@@ -1,0 +1,26 @@
+
+//ARCHITEKTUR  Ideen =
+
+-alle Zeichen-Objekte (Polygon,Ellipse,Rechteck,Text) 
+sind unterklassen von class "shape" (abgeleitete klasse von QObject) und wenn was gezeichnet wird, werden die wichtige Punkten zum zeichenen in einem Vector als
+klassenmember von shape mitgespeichert, und die Objekte in dem Main Window main_vector mit gespeichert; sodass man die wichtige Punkte des shapes und Name("ID") beim zeichnen merkt.(beim Polygon sind die wichtige Punkte mouse-klicks; bei allen anderen erste maus klick und zweite maus klick bzw. mouseposition)(bei Text bottom-left, top right von bounding rect(mit aktualisierten positionen) und geänderten rect durch zoom)
+Dadurch übernimmt der main_vector von MainWindow speicher_management von shapes
+und ermöglicht eine iterative zeichnen auf dem display je nach "ID" von shapes(hier mit "draw_from_vector") und updaten des displays bzw zeichen ebene ("update from vector"). Also die "shapes" sind erweiterbar; man müsste nur die draw_from_vector methode eine neue else_if hinfügen (und manchmal zoom action anpassen, wie bei text.)
+-MainWidget (draw Ebene halt) von dem MainWindow gehört zu einer von QLabel abgeleitete Klasse "m_label" und macht den gesamten mousetracking alleine. Somit müssen die mouse Positionen nicht translated/ transformed werden da die soweiso realtiv zu dem draw Ebene sind -> man kann beliebig neue draw-Actions hinfügen.
+-Für jeden Unterklasse von shape gibt es ein Action, die Klassenmembers von MainWindow sind und die sind "checkable". Da diese Klassenmember sind, können in "overrided" events von QMainWindow überprüft werden, ob diese schon "gechecked" sind (bzw. getoggled) und jenachdem mit (if action->isChecked) überprpfung wird durch while loops (bis einen neuen "check") neue Points für shapes in vektor des shapes und die neue shapes in main_vector gespeichert.-> mit update from vector methode von MainWindow wird dann draw ebene bzw,. m_display updated. (wie die aktuelle Punkte berechnet werden, sind im Code detailliert erklärt)
+Zeichnen funktioniert so: 
+-Polygon-Action: mit linksclick beginnt polygon, mit jedem neuen linksclick fügt man neue Punkte hinzu, mit rechtclick schliess man polygon ab; falls nicht wird es mit "Polygon_force_to_close" macht das Programm von sich alleine. 
+-Ellipse/Rechtecke: mit linksclick beginnt man von Topleft punkt, wenn nicht mehr linkemousebutton gedrückt wird wird endgültig das shape gezeichnet (mouseposition zeigt immer bottomright).
+-Text: in einem Dialog wird zuerst den Text eingegeben, dann mit jedem linksklick wird text auf draw ebene hingefügt. 
+-Panning: "click and grab " mit Linkte mousebutton.
+-Zoom: Mit MouseRad(zoom in und zoom out), man kann die geschwindirkeit zwischen 3 stufen (x1,x2,x3 schnell) einstellen; somit funktioniert es mit jedem Mouse "stufenlos"
+-neue Positionen nachdem Zoom und Panning-Actions werden immer mit gespeichert;
+welche ich als Benutzer nützlich gefunden habe.
+------
+(Es gibt allerdings Probleme bei Text Zoom in-out; und ich kann nicht finden warum)
+Deswegen bisschen detaillierter: 
+Meine Idee bei text war, dass man 2 Rechteecke also 4 Punkte merkt als Position; 1. Rechteck ist vorherige "boundingRect" von dem Text und neue ist "Vergrößerte/Verkleinerte" boundingRect. Diese werden immer aktualisiert und Point size von Text Font wird mit einem faktor " Höhe von neuen Bounding Rechteck / Höhe vom alten bounding rechteck" angepasst. Aus irgendwelchen Grund scheint es nicht 100% richtig zu funktionieren wenn viele Text Objekte hingefügt werden. 
+-------
+-Ausserdem ist es (wie oben schon gesagt) mit dem Programm durch diesen Main Vector möglich, den dokument zu speichern (iterativ "ID", "Text inhalt", "Positionen Punkte"); und einlesen. Bei ungespeicherten Dateien wurde drauf geachtet immer mit einem "*" bei Window Title dem Benutzer dran zu erinnern und mit Dialog Message Box fragen, wenn einen neuen/anderen Datei geöffnet werden will oder den Programm schliessen.  
+Weitere Architektur Ideen sind im Code als Kommentare drin.
+
